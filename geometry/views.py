@@ -7,15 +7,18 @@ from django.urls import reverse
 
 
 def get_rectangle_area(request, width, height):
-    return HttpResponse(f'Площадь прямоугольника равна: {width*height}')
+    area = width * height
+    return render(request, 'geometry/rectangle.html', context = locals())
 
 
 def get_square_area(request, width):
-    return HttpResponse(f'Площадь квадрата равна: {width**2}')
+    square_area = width ** 2
+    return render(request, 'geometry/square.html', context = locals())
 
 
 def get_circle_area(request, radius):
-    return HttpResponse(f'Площадь круга равна: {float(3.14)*(radius**2)}')
+    circle_area = float(3.14) * (radius ** 2)
+    return render(request, 'geometry/circle.html', context = locals())
 
 
 def rectangle(request, width, height):
