@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horoscope types</title>
+</head>
+<body>
+ <ul>
+     {% for type in type_list %}
+         <li><a href="{% url 'horoscope:show_horo' type %}">{{ type|title }}</a></li>
+     {% endfor %}
+ </ul>
+</body>
+</html>

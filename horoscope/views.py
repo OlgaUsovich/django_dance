@@ -17,9 +17,39 @@ horo_marks = {'aries': {3: range(21, 32), 4: range(1, 21)},
               'pisces': {2: range(21, 30), 3: range(1, 21)}}
 
 
+types = {'fire': {'aries': 'Description Aries....',
+                  'taurus': 'Description taurus....',
+                  'gemini': 'Description gemini....'},
+         'earth': {'cancer': 'Description cancer....',
+                   'leo': 'Description leo....',
+                   'virgo': 'Description virgo....'},
+         'air': {'libra': 'Description libra....',
+                 'scorpio': 'Description scorpio....',
+                 'sagittarius': 'Description sagittarius....'},
+         'water': {'capricorn': 'Description capricorn....',
+                   'aquarius': 'Description aquarius....',
+                   'pisces': 'Description pisces....'}}
+
+
 def get_horo_mark(request, month, day):
     for j, i in horo_marks.items():
         for k, v in i.items():
             if month == k and day in i[k]:
                 return HttpResponse(f'{j}')
     return HttpResponse('Введена неверная дата')
+
+
+def show_horo_types(request):
+    type_list = types.keys()
+    return render(request, 'horoscope/types_list.html', context=locals())
+
+
+def show_horo(request, type):
+    horos = types[type]
+    return render(request, 'horoscope/horo_list.html', context=locals())
+
+
+def show_horo_detail(request, type, mark):
+    info = types[type][mark]
+    return render(request, 'horoscope/horo_detail.html', context=locals())
+
